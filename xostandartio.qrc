@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/gamepad.svg</file>
+        <file>images/music.svg</file>
+        <file>images/serial-port.svg</file>
+        <file>images/keyboard.svg</file>
+        <file>images/mouse.svg</file>
+        <file>images/video-input-component.svg</file>
+        <file>images/xoStandartIO.png</file>
+    </qresource>
+</RCC>
