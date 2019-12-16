@@ -7,17 +7,20 @@ static QStringList stopbits = TextHelper::EnumTextValues<QSerialPort::StopBits>(
 static QStringList paritybits = TextHelper::EnumTextValues<QSerialPort::Parity>();
 static QStringList flowcontrol = TextHelper::EnumTextValues<QSerialPort::FlowControl>();
 
+static const char blankString[] = QT_TRANSLATE_NOOP("SettingsDialog", "N/A");
+
 ComPortIO::ComPortIO(QObject *parent) : ComponentBase ("ComPortIO", 0x87728324, "ComPort input/output", parent)
 {
     setIcon(":/images/serial-port.svg");
 
-        createSetting("comport", m_port).opt(getComPortNames());
+    createSetting("comport", m_port).opt(getComPortNames());
     createSetting("baudrate", m_baudRateIndex).enumeration(rates).def(3);
     createSetting("databits", m_dataBitsIndex).enumeration(databits).def(3);
     createSetting("stopbits", m_stopBitsIndex).enumeration(stopbits).def(0);
     createSetting("paritybits", m_parityBitsIndex).enumeration(paritybits).def(0);
     createSetting("flowcontrol", m_flowControlIndex).enumeration(flowcontrol).def(0);
-    createInput("message", m_message);
+    createInput("ba_message", m_messageByteArray);
+    createInput("str_message", m_messageString);
 }
 
 void ComPortIO::onCreate()
@@ -51,14 +54,20 @@ void ComPortIO::objectChangeEvent(QString name)
 void ComPortIO::objectReceiveEvent(QString name)
 {
     //qDebug() << name;
-    if (name == "message")
+    if (name == "ba_message")
     {
-        //qDebug() << "Send me" << m_message.toUtf8();
-        m_serialPort->write(m_message.toUtf8());
+        m_serialPort->write(m_messageByteArray);
     }
-    if (name == "comport")
+
+    else if (name == "str_message")
+    {
+        m_serialPort->write(m_messageString.toUtf8());
+    }
+
+    else if (name == "comport")
     {
         setComPortOptions();
+        getComPortInfo();
     }
     else if (name == "baudrate")
     {
@@ -146,4 +155,31 @@ QString ComPortIO::getComPortNames(){
     QByteArray byteArray = jsonDoc.toJson(QJsonDocument::Compact);
 
     return QString(byteArray);
+}
+
+void ComPortIO::getComPortInfo()
+{
+    serialPortInfos.clear();
+
+    QString description;
+    QString manufacturer;
+    QString serialNumber;
+
+    const auto infos = QSerialPortInfo::availablePorts();
+
+    for (const QSerialPortInfo &info: infos)
+    {
+
+        description = info.description();
+        manufacturer = info.manufacturer();
+        serialNumber = info.serialNumber();
+
+        serialPortInfos << info.portName()
+             << (!description.isEmpty() ? description : blankString)
+             << (!manufacturer.isEmpty() ? manufacturer : blankString)
+             << (!serialNumber.isEmpty() ? serialNumber : blankString)
+             << info.systemLocation()
+             << (info.vendorIdentifier() ? QString::number(info.vendorIdentifier(), 16) : blankString)
+             << (info.productIdentifier() ? QString::number(info.productIdentifier(), 16) : blankString);
+    }
 }

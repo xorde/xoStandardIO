@@ -22,10 +22,12 @@ protected:
     int m_parityBitsIndex = 0;
     int m_flowControlIndex = 0;
 
-    //QStringList m_port;
+    QStringList serialPortInfos;
     QString m_port = "COM1";
-    QString m_message = "";
+    QByteArray m_messageByteArray;
+    QString m_messageString = "";
     QSerialPort *m_serialPort = nullptr;
+
 
     void onCreate();
     void onDestroy();
@@ -50,6 +52,7 @@ protected:
     void selectFlowControlByIndex(int flowControlIndex);
 
     void setComPortOptions();
+    void getComPortInfo();
 
 #endif // COMPORTIO_H
 };
