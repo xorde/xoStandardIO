@@ -38,8 +38,8 @@ DISTFILES += xoStandartIO.json \
 unix { target.path = /usr/lib
     INSTALLS += target }
 
-QMAKE_POST_LINK += mkdir $$shell_path($${DESTDIR}) &
-DESTDIR = $$join(DESTDIR,,,/xoStandartIO)
+#QMAKE_POST_LINK += mkdir $$shell_path($${DESTDIR}) &
+#DESTDIR = $$join(DESTDIR,,,/xoStandartIO)
 
 RESOURCES += \
     xostandartio.qrc
