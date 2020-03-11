@@ -1,5 +1,5 @@
 #include "AudioPlayer.h"
-
+#include "GlobalConsole.h"
 
 AudioPlayer::AudioPlayer(QObject *parent) : ComponentBase("AudioPlayer", 0x00411010, "Plays WAV and MP3 files", parent)
 {
@@ -20,6 +20,11 @@ void AudioPlayer::setPath(QString path)
     auto url = QUrl::fromLocalFile(path);
     //qDebug() << "AudioPlayer:" << "New file" << path;
     m_player->setMedia(url);
+
+    if (!QFile::exists(path))
+    {
+        GlobalConsole::writeLine("Audiofile \""+path+"\" doesn't exist");
+    }
 
     if (m_playOnPathChange)
     {
