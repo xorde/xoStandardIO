@@ -1,7 +1,7 @@
 #include "AudioPlayer.h"
 #include "GlobalConsole.h"
 
-AudioPlayer::AudioPlayer(QObject *parent) : ComponentBase("AudioPlayer", 0x00411010, "Plays WAV and MP3 files", parent)
+AudioPlayer::AudioPlayer(QObject *parent) : ComponentBase("AudioPlayer", "Plays WAV and MP3 files", parent)
 {
     setIcon(":/images/music.svg");
 

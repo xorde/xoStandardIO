@@ -9,7 +9,7 @@ static QStringList flowcontrol = TextHelper::EnumTextValues<QSerialPort::FlowCon
 
 static const char blankString[] = QT_TRANSLATE_NOOP("SettingsDialog", "N/A");
 
-ComPortIO::ComPortIO(QObject *parent) : ComponentBase ("ComPortIO", 0x87728324, "ComPort input/output", parent)
+ComPortIO::ComPortIO(QObject *parent) : ComponentBase ("ComPortIO", "ComPort input/output", parent)
 {
     setIcon(":/images/serial-port.svg");
 

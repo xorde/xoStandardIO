@@ -8,7 +8,7 @@
 #include "helpers/GlobalKeyboard.h"
 #include "texthelper.h"
 
-Keyboard::Keyboard(QObject *parent) : ComponentBase("Keyboard", 0x80063781, "Triggered by keyboard button press events", parent)
+Keyboard::Keyboard(QObject *parent) : ComponentBase("Keyboard", "Triggered by keyboard button press events", parent)
 {
     setIcon(":/images/keyboard.svg");
     version = 1;

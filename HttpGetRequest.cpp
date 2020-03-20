@@ -3,7 +3,7 @@
 #include <QNetworkRequest>
 
 
-HttpGetRequest::HttpGetRequest(QObject *parent) : ComponentBase ("HttpGetRequest", 0x87728323, "HttpGetRequest", parent)
+HttpGetRequest::HttpGetRequest(QObject *parent) : ComponentBase ("HttpGetRequest", "HttpGetRequest", parent)
 {
 
     createInput("url", m_url);

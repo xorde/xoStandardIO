@@ -1,7 +1,7 @@
 #include "KeyboardArrows.h"
 #include "helpers/GlobalKeyboard.h"
 
-KeyboardArrows::KeyboardArrows(QObject *parent) : ComponentBase ("KeyboardArrows", 0x80063782, "Generated triggers on arrow or WASD keys", parent)
+KeyboardArrows::KeyboardArrows(QObject *parent) : ComponentBase ("KeyboardArrows", "Generated triggers on arrow or WASD keys", parent)
 {
     setIcon(":/images/gamepad.svg");
 

@@ -2,7 +2,7 @@
 #include "globalhelper.h"
 #include <QCursor>
 
-Mouse::Mouse(QObject *parent) : ComponentBase ("Mouse",0x81770153,"Provides and sets cursor position",parent)
+Mouse::Mouse(QObject *parent) : ComponentBase ("Mouse", "Provides and sets cursor position",parent)
 {
     setIcon(":/images/mouse.svg");
 
