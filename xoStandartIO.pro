@@ -6,16 +6,22 @@ include("../../../NeuroboticsToolkit/NTSubFolder.pri")
 
 SOURCES += \
     AudioPlayer.cpp \
+    Beeper.cpp \
     ComPortIO.cpp \
     HttpGetRequest.cpp \
     Mouse.cpp   \
+    ToneGenerator.cpp \
+    ToneGeneratorBase.cpp \
     xoStandartIO.cpp
 
 HEADERS += \
     AudioPlayer.h \
+    Beeper.h \
     ComPortIO.h \
     HttpGetRequest.h \
     Mouse.h \
+    ToneGenerator.h \
+    ToneGeneratorBase.h \
     xoStandartIO.h
 
 
