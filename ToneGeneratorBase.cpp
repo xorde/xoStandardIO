@@ -21,8 +21,7 @@ ToneGeneratorBase::ToneGeneratorBase(QObject *parent) : ComponentBase(parent)
 
     m_audio = new QAudioOutput(format, this);
     m_audio->setNotifyInterval(AUDIO_BUF_MS);
-    connect(m_audio, SIGNAL(notify()), this, SLOT(playbackNotify()));
-    connect(m_audio, SIGNAL(stateChanged(QAudio::State)), this, SLOT(stateChanged(QAudio::State)));
+    connect(m_audio, SIGNAL(notify()), this, SLOT(playbackNotify()));    
 
     m_audio->setBufferSize(SAMPLE_FREQ);
     createSetting("volume",m_volume);
