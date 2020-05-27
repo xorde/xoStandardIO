@@ -10,8 +10,8 @@ public:
     HttpGetRequest(QObject* parent = nullptr);
 
 private:
-    QString m_url;
-    QString m_response;
+    xoString m_url;
+    xoString m_response;
 
 protected:
     virtual void objectReceiveEvent(QString name) override;

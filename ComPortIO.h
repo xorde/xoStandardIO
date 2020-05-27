@@ -16,16 +16,16 @@ public:
 
 protected:
     int m_portIndex = 1;
-    int m_baudRateIndex = 3;
-    int m_dataBitsIndex = 3;
-    int m_stopBitsIndex = 0;
-    int m_parityBitsIndex = 0;
-    int m_flowControlIndex = 0;
+    xoInt m_baudRateIndex = 3;
+    xoInt m_dataBitsIndex = 3;
+    xoInt m_stopBitsIndex = 0;
+    xoInt m_parityBitsIndex = 0;
+    xoInt m_flowControlIndex = 0;
 
     QStringList serialPortInfos;
-    QString m_port = "COM1";
-    QByteArray m_messageByteArray;
-    QString m_messageString = "";
+    xoString m_port = "COM1";
+    xoByteArray m_messageByteArray;
+    xoString m_messageString = "";
     QSerialPort *m_serialPort = nullptr;
 
 

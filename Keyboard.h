@@ -18,8 +18,8 @@ protected:
 private:
     ConnectionHelper m_connections;
 
-    int m_key = 0;
-    QString m_keyText = "";
+    xoInt m_key = 0;
+    xoString m_keyText = "";
 };
 
 #endif // RANDOMNUMBERGENERATOR_H

@@ -19,11 +19,11 @@ protected:
 
     ConnectionHelper m_connections;
 
-    float m_inputX = 0;
-    float m_inputY = 0;
+    xoFloat m_inputX = 0;
+    xoFloat m_inputY = 0;
 
-    float m_x = 0;
-    float m_y = 0;
+    xoFloat m_x = 0;
+    xoFloat m_y = 0;
 };
 
 #endif // MOUSE_H

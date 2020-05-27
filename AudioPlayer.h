@@ -27,10 +27,10 @@ protected:
     QMediaPlayer *m_player = nullptr;
     ConnectionHelper m_connections;
 
-    QString m_path = "";
-    QString m_pathFromSettings = "";
-    bool m_playOnPathChange = true;
-    bool m_play = false;
+    xoString m_path = "";
+    xoString m_pathFromSettings = "";
+    xoBool m_playOnPathChange = true;
+    xoBool m_play = false;
 
 };
 

@@ -23,12 +23,12 @@ void Keyboard::onCreate()
     m_connections << connect(GlobalKeyboard::Instance(), &GlobalKeyboard::keyPressed,[=](unsigned long key)
     {
         m_key = GlobalKeyboard::getQKeyIndex(key);
-        touchOutput("key", true);
+//        touchOutput("key", true);
 
         if (m_key > 0)
         {
-            m_keyText = TextHelper::EnumToString((Qt::Key)m_key).replace("Key_", "").toLower();
-            touchOutput("keyText", true);
+            m_keyText = TextHelper::EnumToString((Qt::Key)m_key.value()).replace("Key_", "").toLower();
+//            touchOutput("keyText", true);
             log(m_keyText);
         }
     });

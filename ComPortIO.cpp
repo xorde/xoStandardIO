@@ -61,7 +61,7 @@ void ComPortIO::objectReceiveEvent(QString name)
 
     else if (name == "str_message")
     {
-        m_serialPort->write(m_messageString.toUtf8());
+        m_serialPort->write(m_messageString.value().toUtf8());
     }
 
     else if (name == "comport")

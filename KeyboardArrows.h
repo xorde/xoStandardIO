@@ -18,14 +18,14 @@ protected:
 
     ConnectionHelper m_connections;
 
-    bool m_acceptWASD = false;
+    xoBool m_acceptWASD = false;
     int m_stopKey = Qt::Key_X;
 
-    bool m_arrowUp = false;
-    bool m_arrowDown = false;
-    bool m_arrowLeft = false;
-    bool m_arrowRight = false;
-    bool m_arrowStop = false;
+    xoBool m_arrowUp = false;
+    xoBool m_arrowDown = false;
+    xoBool m_arrowLeft = false;
+    xoBool m_arrowRight = false;
+    xoBool m_arrowStop = false;
 };
 
 #endif // KEYBOARDARROWS_H

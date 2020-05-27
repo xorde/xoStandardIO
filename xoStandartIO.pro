@@ -38,8 +38,7 @@ HEADERS += \
 
 
 
-DISTFILES += xoStandartIO.json \
-    xoStandartIO.json
+DISTFILES += xoStandartIO.json
 
 unix { target.path = /usr/lib
     INSTALLS += target }

@@ -72,7 +72,7 @@ void AudioPlayer::objectReceiveEvent(QString name)
     qDebug() << "Audio receive" << name;
     if (name == "path")
     {
-        m_pathFromSettings = m_path;
+        m_pathFromSettings = m_path.value();
         setPath(m_path);
     }
     else if (name == "pathAudio")

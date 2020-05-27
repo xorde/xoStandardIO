@@ -6,7 +6,6 @@
 #include "ModuleBaseAppONB.h"
 
 Q_DECLARE_INTERFACE(ModuleBaseAppONB, "xo.ModuleBaseLibONB/1.0")
-
 class xoStandartIO : public ModuleBaseAppONB
 {
     Q_OBJECT

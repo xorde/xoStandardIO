@@ -9,7 +9,7 @@ KeyboardArrows::KeyboardArrows(QObject *parent) : ComponentBase ("KeyboardArrows
     createOutput("Down", m_arrowDown).sampling(0ms);
     createOutput("Left", m_arrowLeft).sampling(0ms);
     createOutput("Right", m_arrowRight).sampling(0ms);
-    createOutput("Stop", m_arrowRight).sampling(0ms);
+    createOutput("Stop", m_arrowStop).sampling(0ms);
 
     createSetting("AcceptWASD", m_acceptWASD);//.hint("Use WASD keys as well");
     //createSetting("StopKey", m_stopKey)
@@ -24,27 +24,27 @@ void KeyboardArrows::onCreate()
         if (qkey == Qt::Key_Up || (m_acceptWASD && qkey == Qt::Key_W))
         {
             m_arrowUp = true;
-            touchOutput("Up", true);
+//            touchOutput("Up", true);
         }
         else if (qkey == Qt::Key_Down || (m_acceptWASD && qkey == Qt::Key_S))
         {
             m_arrowDown = true;
-            touchOutput("Down", true);
+//            touchOutput("Down", true);
         }
         else if (qkey == Qt::Key_Left || (m_acceptWASD && qkey == Qt::Key_A))
         {
             m_arrowLeft = true;
-            touchOutput("Left", true);
+//            touchOutput("Left", true);
         }
         else if (qkey == Qt::Key_Right || (m_acceptWASD && qkey == Qt::Key_D))
         {
             m_arrowRight = true;
-            touchOutput("Right", true);
+//            touchOutput("Right", true);
         }
         else if (qkey == m_stopKey || (m_acceptWASD && qkey == Qt::Key_X))
         {
             m_arrowStop = true;
-            touchOutput("Stop", true);
+//            touchOutput("Stop", true);
         }
     });
 
@@ -54,27 +54,27 @@ void KeyboardArrows::onCreate()
         if (qkey == Qt::Key_Up || (m_acceptWASD && qkey == Qt::Key_W))
         {
             m_arrowUp = false;
-            touchOutput("Up", true);
+//            touchOutput("Up", true);
         }
         else if (qkey == Qt::Key_Down || (m_acceptWASD && qkey == Qt::Key_S))
         {
             m_arrowDown = false;
-            touchOutput("Down", true);
+//            touchOutput("Down", true);
         }
         else if (qkey == Qt::Key_Left || (m_acceptWASD && qkey == Qt::Key_A))
         {
             m_arrowLeft = false;
-            touchOutput("Left", true);
+//            touchOutput("Left", true);
         }
         else if (qkey == Qt::Key_Right || (m_acceptWASD && qkey == Qt::Key_D))
         {
             m_arrowRight = false;
-            touchOutput("Right", true);
+//            touchOutput("Right", true);
         }
         else if (qkey == m_stopKey || (m_acceptWASD && qkey == Qt::Key_X))
         {
             m_arrowStop = false;
-            touchOutput("Stop", true);
+//            touchOutput("Stop", true);
         }
     });
 }
