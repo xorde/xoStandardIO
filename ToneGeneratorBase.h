@@ -14,10 +14,10 @@ protected:
     QAudioOutput *m_audio = nullptr;
     QIODevice *outDevice;
     void playTone();
-    float m_volume =50;
-    float m_freq = 440;
-    int m_duration =500;
-    bool m_trigger = false;
+    xoFloat m_volume =50;
+    xoFloat m_freq = 440;
+    xoInt m_duration =500;
+    xoBool m_trigger = false;
     void stop();
 
      int mTime;

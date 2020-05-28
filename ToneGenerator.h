@@ -13,7 +13,7 @@ protected:
     void onCreate() override;
     void onDestroy()override;
     void objectReceiveEvent(QString name) override;
-    int m_delay=0;
+    xoInt m_delay=0;
     QTimer *m_delayTimer = nullptr;
     QTimer *m_playTimer = nullptr;
 };
