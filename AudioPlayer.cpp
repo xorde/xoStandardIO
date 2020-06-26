@@ -7,6 +7,8 @@ AudioPlayer::AudioPlayer(QObject *parent) : ComponentBase("AudioPlayer", "Plays 
 
     createInput("play", m_play);
     createInput("path", m_path).sampling(0ms);
+    createInput("audiobytes", audiobytes);
+
     createSetting("pathAudio", m_pathFromSettings).opt("{\"specialType\":\"PickFile:*.wav;*.mp3\"}");
     createSetting("playOnPathChange", m_playOnPathChange).def(true);
 }
@@ -18,7 +20,6 @@ void AudioPlayer::setPath(QString path)
     stop();
 
     auto url = QUrl::fromLocalFile(path);
-    //qDebug() << "AudioPlayer:" << "New file" << path;
     m_player->setMedia(url);
 
     if (!QFile::exists(path))

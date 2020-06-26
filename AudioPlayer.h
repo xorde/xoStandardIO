@@ -27,8 +27,9 @@ protected:
     QMediaPlayer *m_player = nullptr;
     ConnectionHelper m_connections;
 
-    xoString m_path = "";
-    xoString m_pathFromSettings = "";
+    xoByteArray audiobytes;
+    xoString m_path = QString("");
+    xoString m_pathFromSettings = QString("");
     xoBool m_playOnPathChange = true;
     xoBool m_play = false;
 
