@@ -9,6 +9,8 @@ AudioPlayer::AudioPlayer(QObject *parent) : ComponentBase("AudioPlayer", "Plays 
     createInput("path", m_path).sampling(0ms);
     createInput("audiobytes", audiobytes);
 
+    createOutput("volume", volume).def(0).sampling(0ms);
+
     createSetting("pathAudio", m_pathFromSettings).opt("{\"specialType\":\"PickFile:*.wav;*.mp3\"}");
     createSetting("playOnPathChange", m_playOnPathChange).def(true);
 }
@@ -19,18 +21,11 @@ void AudioPlayer::setPath(QString path)
 
     stop();
 
-    auto url = QUrl::fromLocalFile(path);
-    m_player->setMedia(url);
+    m_player->setMedia(QUrl::fromLocalFile(path));
 
-    if (!QFile::exists(path))
-    {
-        GlobalConsole::writeLine("Audiofile \""+path+"\" doesn't exist");
-    }
+    if (!QFile::exists(path)) GlobalConsole::writeLine("Audiofile \""+path+"\" doesn't exist");
 
-    if (m_playOnPathChange)
-    {
-        play();
-    }
+    if (m_playOnPathChange) play();
 }
 
 void AudioPlayer::play()
@@ -44,23 +39,38 @@ void AudioPlayer::play()
 
 void AudioPlayer::stop()
 {
-    if (m_player)
-    {
-        m_player->stop();
-    }
+    if (m_player) m_player->stop();
 }
 
 void AudioPlayer::pause()
 {
-    if (m_player)
-    {
-        m_player->pause();
-    }
+    if (m_player) m_player->pause();
 }
 
 void AudioPlayer::onCreate()
 {
-     m_player = new QMediaPlayer();
+    m_player = new QMediaPlayer();
+
+    probe = new QAudioProbe(this);
+    probe->setSource(m_player);
+
+    connect(probe, &QAudioProbe::audioBufferProbed, this, [=](const QAudioBuffer &buffer)
+    {
+        int length = buffer.byteCount();
+        qreal peakLevel = 0.0;
+
+        const char *ptr = buffer.constData<char>();
+        const char *const end = ptr + length;
+        while (ptr < end)
+        {
+            const qint16 value = *reinterpret_cast<const qint16*>(ptr);
+            const qreal fracValue = qreal(value) / 32768;
+            peakLevel = qMax(peakLevel, fracValue);
+            ptr += 2;
+        }
+
+        volume = peakLevel;
+    });
 }
 
 void AudioPlayer::onDestroy()
@@ -82,22 +92,12 @@ void AudioPlayer::objectReceiveEvent(QString name)
     }
     else if (name == "play")
     {
-        //qDebug() << "Playing" << m_play;
-        if (m_play)
-        {
-            play();
-        }
-        else
-        {
-            stop();
-        }
+        m_play ? play() : stop();
     }
 }
 
 void AudioPlayer::destruct()
 {
-    m_connections.clear();
-
     if (m_player)
     {
         m_player->stop();

@@ -1,8 +1,10 @@
 #ifndef AUDIOPLAYER_H
 #define AUDIOPLAYER_H
 
-#include "ComponentBase.h"
 #include <QMediaPlayer>
+#include <QAudioProbe>
+
+#include "ComponentBase.h"
 #include "helpers/ConnectionHelper.h"
 
 class AudioPlayer : public ComponentBase
@@ -25,8 +27,9 @@ protected:
     void destruct();
 
     QMediaPlayer *m_player = nullptr;
-    ConnectionHelper m_connections;
+    QAudioProbe* probe = nullptr;
 
+    xoDouble volume;
     xoByteArray audiobytes;
     xoString m_path = QString("");
     xoString m_pathFromSettings = QString("");

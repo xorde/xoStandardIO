@@ -12,6 +12,7 @@ SOURCES += \
     Mouse.cpp   \
     ToneGenerator.cpp \
     ToneGeneratorBase.cpp \
+#    Engine.cpp \
     xoStandartIO.cpp
 
 HEADERS += \
@@ -22,6 +23,7 @@ HEADERS += \
     Mouse.h \
     ToneGenerator.h \
     ToneGeneratorBase.h \
+#    Engine.h \
     xoStandartIO.h
 
 
