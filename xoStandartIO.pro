@@ -1,8 +1,15 @@
 QT    *= core widgets multimedia serialport
 TARGET = xoStandartIO
+TEMPLATE = app
 
-include("../../xoTools/Plugin.pri")
+include("../../xoTools/Application.pri")
 include("../../../NeuroboticsToolkit/NTSubFolder.pri")
+win32: {
+#QMAKE_POST_LINK += xcopy /Y $$shell_path($${DESTDIR}/../../NeuroboticsToolkit.CV$${SUFFIX}$${XO_TOOLS_EXTENSION}) $$shell_path($${DESTDIR}/) &
+QMAKE_POST_LINK += xcopy /Y $$shell_path($${DESTDIR}/../../NeuroboticsToolkit$${SUFFIX}$${XO_TOOLS_EXTENSION}) $$shell_path($${DESTDIR}/) &
+#QMAKE_POST_LINK += windeployqt $${DESTDIR}/NeuroboticsToolkit.CV$${SUFFIX}$${XO_TOOLS_EXTENSION} &
+QMAKE_POST_LINK += windeployqt $${DESTDIR}/NeuroboticsToolkit$${SUFFIX}$${XO_TOOLS_EXTENSION} &
+}
 
 SOURCES += \
     AudioPlayer.cpp \
@@ -13,6 +20,7 @@ SOURCES += \
     ToneGenerator.cpp \
     ToneGeneratorBase.cpp \
 #    Engine.cpp \
+    main.cpp \
     xoStandartIO.cpp
 
 HEADERS += \
@@ -36,6 +44,8 @@ SOURCES += \
 HEADERS += \
     Keyboard.h \
     KeyboardArrows.h \
+
+RC_ICONS += images/xoStandartIO.ico
 }
 
 

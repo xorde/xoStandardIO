@@ -7,5 +7,6 @@
         <file>images/mouse.svg</file>
         <file>images/video-input-component.svg</file>
         <file>images/xoStandartIO.png</file>
+        <file>images/xoStandartIO.ico</file>
     </qresource>
 </RCC>
