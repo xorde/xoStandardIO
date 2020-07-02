@@ -26,6 +26,7 @@ protected:
 
     void destruct();
 
+    QBuffer *playerBuffer = nullptr;
     QMediaPlayer *m_player = nullptr;
     QAudioProbe* probe = nullptr;
 

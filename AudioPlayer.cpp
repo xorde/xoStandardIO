@@ -7,7 +7,7 @@ AudioPlayer::AudioPlayer(QObject *parent) : ComponentBase("AudioPlayer", "Plays 
 
     createInput("play", m_play);
     createInput("path", m_path).sampling(0ms);
-    createInput("audiobytes", audiobytes);
+    createInput("audiobytes", audiobytes).sampling(0ms);
 
     createOutput("volume", volume).def(0).sampling(0ms);
 
@@ -51,6 +51,8 @@ void AudioPlayer::onCreate()
 {
     m_player = new QMediaPlayer();
 
+    playerBuffer = new QBuffer(m_player);
+
     probe = new QAudioProbe(this);
     probe->setSource(m_player);
 
@@ -85,6 +87,16 @@ void AudioPlayer::objectReceiveEvent(QString name)
     {
         m_pathFromSettings = m_path.value();
         setPath(m_path);
+    }
+    else if(name == "audiobytes")
+    {
+        playerBuffer->close();
+        playerBuffer->setData(audiobytes);
+        if (playerBuffer->open(QIODevice::ReadOnly))
+            playerBuffer->reset();
+
+        m_player->setMedia(nullptr, playerBuffer);
+        play();
     }
     else if (name == "pathAudio")
     {
