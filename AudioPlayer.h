@@ -26,9 +26,9 @@ protected:
 
     void destruct();
 
-    QBuffer *playerBuffer = nullptr;
     QMediaPlayer *m_player = nullptr;
     QAudioProbe* probe = nullptr;
+    QBuffer playerBuffer;
 
     xoDouble volume;
     xoByteArray audiobytes;
@@ -36,7 +36,6 @@ protected:
     xoString m_pathFromSettings = QString("");
     xoBool m_playOnPathChange = true;
     xoBool m_play = false;
-
 };
 
 #endif // AUDIOPLAYER_H

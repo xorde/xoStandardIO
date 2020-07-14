@@ -2,6 +2,11 @@ QT    *= core widgets multimedia serialport
 TARGET = xoStandartIO
 TEMPLATE = app
 
+VER_MAJ = 0
+VER_MIN = 0
+VER_PAT = 1
+VERSION = $$VER_MAJ"."$$VER_MIN"."$$VER_PAT
+
 include("../../xoTools/Application.pri")
 include("../../../NeuroboticsToolkit/NTSubFolder.pri")
 win32: {

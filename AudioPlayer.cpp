@@ -51,8 +51,6 @@ void AudioPlayer::onCreate()
 {
     m_player = new QMediaPlayer();
 
-    playerBuffer = new QBuffer(m_player);
-
     probe = new QAudioProbe(this);
     probe->setSource(m_player);
 
@@ -90,13 +88,14 @@ void AudioPlayer::objectReceiveEvent(QString name)
     }
     else if(name == "audiobytes")
     {
-        playerBuffer->close();
-        playerBuffer->setData(audiobytes);
-        if (playerBuffer->open(QIODevice::ReadOnly))
-            playerBuffer->reset();
+        static int sas = 0;
+        GlobalConsole::writeLine(QString::number(++sas));
 
-        m_player->setMedia(nullptr, playerBuffer);
-        play();
+        playerBuffer.close();
+        playerBuffer.setData(audiobytes);
+
+        m_player->setMedia(QMediaContent(), &playerBuffer);
+        m_player->play();
     }
     else if (name == "pathAudio")
     {
