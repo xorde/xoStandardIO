@@ -7,6 +7,7 @@
 #include "HttpGetRequest.h"
 #include "ToneGenerator.h"
 #include "Beeper.h"
+#include "Gamepad.h"
 
 xoStandartIO::xoStandartIO() : ModuleBaseAppONB("xoStandartIO", "127.0.0.1", "8080")
 {
@@ -19,6 +20,7 @@ xoStandartIO::xoStandartIO() : ModuleBaseAppONB("xoStandartIO", "127.0.0.1", "80
     declareComponent(new ComPortIO);
     declareComponent(new HttpGetRequest);
 
+    declareComponent(new Gamepad);
 
 #ifdef Q_OS_WIN
     declareComponent(new Keyboard);

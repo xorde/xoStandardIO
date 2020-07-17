@@ -8,5 +8,6 @@
         <file>images/video-input-component.svg</file>
         <file>images/xoStandartIO.png</file>
         <file>images/xoStandartIO.ico</file>
+        <file>images/gamepad-square.svg</file>
     </qresource>
 </RCC>

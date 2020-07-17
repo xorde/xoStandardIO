@@ -1,4 +1,4 @@
-QT    *= core widgets multimedia serialport
+QT    *= core widgets multimedia serialport gamepad
 TARGET = xoStandartIO
 TEMPLATE = app
 
@@ -20,6 +20,7 @@ SOURCES += \
     AudioPlayer.cpp \
     Beeper.cpp \
     ComPortIO.cpp \
+    Gamepad.cpp \
     HttpGetRequest.cpp \
     Mouse.cpp   \
     ToneGenerator.cpp \
@@ -32,6 +33,7 @@ HEADERS += \
     AudioPlayer.h \
     Beeper.h \
     ComPortIO.h \
+    Gamepad.h \
     HttpGetRequest.h \
     Mouse.h \
     ToneGenerator.h \
